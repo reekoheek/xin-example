@@ -1,5 +1,5 @@
-import { define } from 'xin';
-import { View } from 'xin/views';
+import { define } from '@xinix/xin';
+import { View } from '@xinix/xin/views';
 
 import html from './my-walkthrough.html';
 import './my-walkthrough.scss';

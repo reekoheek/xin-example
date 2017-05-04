@@ -21,7 +21,6 @@ module.exports = function (env = {}) {
         },
         {
           test: /\.html$/,
-          exclude: /node_modules/,
           use: getHtmlLoader(env),
         },
         {

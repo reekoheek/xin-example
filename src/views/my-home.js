@@ -1,5 +1,5 @@
-import { define } from 'xin';
-import { View } from 'xin/views/view';
+import { define } from '@xinix/xin';
+import { View } from '@xinix/xin/views';
 
 import html from './my-home.html';
 import './my-home.scss';

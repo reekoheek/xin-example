@@ -5,9 +5,9 @@ import 'xin-ui/scss/ui-header.scss';
 import 'xin-ui/scss/ui-button.scss';
 import 'material-design-icons/iconfont/material-icons.css';
 
-import { bootstrap } from 'xin/core';
+import { bootstrap } from '@xinix/xin/core';
 
-(function () {
+(async function () {
   bootstrap({
     'view.loaders': [
       {
@@ -19,5 +19,11 @@ import { bootstrap } from 'xin/core';
     ],
   });
 
-  require('./components/my-app');
+  await System.import('./components/my-app');
+
+  document.addEventListener('started', () => {
+    setTimeout(() => {
+      document.body.removeAttribute('unresolved');
+    }, 100);
+  });
 })();

@@ -34,7 +34,7 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
-    "xin": "github:xinix-technology/xin",
-    "xin-ui": "github:reekoheek/xin-ui"
+    "@xinix/xin": "^2.4.1",
+    "xin-ui": "^1.1.1"
   }
 }
