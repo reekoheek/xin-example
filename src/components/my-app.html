@@ -1,0 +1,21 @@
+<xin-lazy-view-middleware></xin-lazy-view-middleware>
+<xin-title-middleware></xin-title-middleware>
+
+<ui-drawer id="drawer">
+  <div class="ui-list" id="menuList">
+    <a class="ui-list__item" href="#!/">Home</a>
+    <a class="ui-list__item" href="#!/forms">Forms</a>
+    <a class="ui-list__item" href="#!/layouts">Layouts</a>
+    <a class="ui-list__item" href="#!/profile">Profile</a>
+    <a class="ui-list__item" href="#!/login">Logout</a>
+  </div>
+</ui-drawer>
+
+<xin-pager class="ui-layout ui-layout--v">
+  <my-walkthrough lazy-view uri="/walkthrough"></my-walkthrough>
+  <my-login lazy-view uri="/login"></my-login>
+  <my-home lazy-view uri="/"></my-home>
+  <my-menu lazy-view uri="/forms" title="Forms" menus="[[formMenus]]"></my-menu>
+  <my-menu lazy-view uri="/layouts" title="Layouts" menus="[[layoutMenus]]"></my-menu>
+  <my-layouts lazy-view uri="/layouts"></my-layouts>
+</xin-pager>

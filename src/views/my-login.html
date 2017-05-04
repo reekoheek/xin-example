@@ -1,0 +1,18 @@
+<header class="ui-header">
+  <div class="ui-header__row">
+    <button class="ui-button ui-button--icon ui-drawer--handle" (click)="__global.drawer.open()">
+      <i class="material-icons">menu</i>
+    </button>
+    <span class="ui-header__title">Login</span>
+  </div>
+</header>
+
+<form class="ui-padding" (submit)="doLogin(evt)">
+  <ui-textfield label="Username" value="{{username}}"></ui-textfield>
+
+  <ui-reveal>
+    <ui-textfield label="Password" type="password" value="{{password}}"></ui-textfield>
+  </ui-reveal>
+
+  <button class="ui-button ui-button--block ui-button--colored">Login</button>
+</form>

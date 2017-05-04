@@ -1,0 +1,62 @@
+<div class="ui-layout ui-layout--v">
+  <header class="ui-header">
+    <div class="ui-header__row">
+      <button class="ui-button ui-button--icon ui-drawer--handle" (click)="__global.drawer.open()">
+        <i class="material-icons">menu</i>
+      </button>
+      <span class="ui-header__title">Home</span>
+    </div>
+  </header>
+
+  <ui-slides autoplay="5000">
+    <div class="swiper-slide" style="background-image: url(./assets/images/feed/500x333paddleboarding.png)">
+      <h1>
+        Slide 1
+      </h1>
+    </div>
+    <div class="swiper-slide" style="background-image: url(./assets/images/feed/500x333Parasailing.png)">
+      <h1>
+        Slide 2
+      </h1>
+    </div>
+    <div class="swiper-slide">
+      <h1>
+        Slide 3
+      </h1>
+    </div>
+  </ui-slides>
+
+  <div class="ui-padding scroll-x">
+    <button class="col30">
+      <img src="../assets/images/listing/200x200basquet.png">
+    </button>
+    <button class="col30">
+      <img src="../assets/images/listing/200x200boxeo.png">
+    </button>
+    <button class="col30">
+      <img src="../assets/images/listing/200x200crossfit.png">
+    </button>
+    <button class="col30">
+      <img src="../assets/images/listing/200x200futbol.png">
+    </button>
+  </div>
+
+  <div class="ui-padding ui-scroll ui-flex ui-layout ui-layout--wrap">
+    <button class="col50">
+      <span>Basketball</span>
+      <img src="../assets/images/listing/200x200basquet.png">
+    </button>
+    <button class="col50">
+      <span>Boxing</span>
+      <img src="../assets/images/listing/200x200boxeo.png">
+    </button>
+    <button class="col50">
+      <span>Crossfit</span>
+      <img src="../assets/images/listing/200x200crossfit.png">
+    </button>
+    <button class="col50">
+      <span>Football</span>
+      <img src="../assets/images/listing/200x200futbol.png">
+    </button>
+  </div>
+</div>
