@@ -11,7 +11,9 @@
   "author": "Ganesha <reekoheek@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "babel-eslint": "^7.2.3",
     "babel-loader": "^7.0.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.24.1",
     "copy-webpack-plugin": "^4.0.1",
@@ -30,11 +32,13 @@
     "sass-loader": "^6.0.3",
     "style-loader": "^0.17.0",
     "url-loader": "^0.5.8",
-    "webpack": "^2.4.1",
+    "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
+    "@webcomponents/webcomponentsjs": "^1.0.1",
     "@xinix/xin": "^2.4.1",
+    "webcomponentsjs": "^1.0.2",
     "xin-ui": "^1.1.1"
   }
 }

@@ -12,7 +12,7 @@ module.exports = function (env = {}) {
       path: path.join(__dirname, 'www'),
       filename: 'lib/[name].js',
     },
-    devtool: 'eval',
+    devtool: 'sourcemap',
     module: {
       rules: [
         {
@@ -74,6 +74,7 @@ function getCssLoader () {
 
 function getBabelLoader () {
   let plugins = [
+    'syntax-dynamic-import',
     // require.resolve('babel-plugin-transform-async-to-generator'),
     // [ require.resolve('babel-plugin-__coverage__'), { 'ignore': 'node_modules' } ],
     // require.resolve('babel-plugin-syntax-dynamic-import'),

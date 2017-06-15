@@ -8,7 +8,14 @@ import 'material-design-icons/iconfont/material-icons.css';
 import { bootstrap } from '@xinix/xin/core';
 
 (async function () {
+  // use below polyfill to support unsupported customElements v0
+  if (!document.registerElement) await System.import('webcomponentsjs/micro');
+  // use below polyfill to support unsupported customElements v1
+  // if (!window.customElements) await System.import('@webcomponents/webcomponentsjs/webcomponents-hi-sd-ce');
+
   bootstrap({
+    'customElements.version': 'v0',
+    // 'env.debug': true,
     'view.loaders': [
       {
         test: /^my-/,
