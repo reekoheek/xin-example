@@ -1,11 +1,10 @@
 import { define } from '@xinix/xin';
 import { App } from '@xinix/xin/components';
 import html from './my-app.html';
-
-import '@xinix/xin/middlewares';
 import './my-app.scss';
 
-import('xin-ui/ui-drawer');
+import '@xinix/xin/middlewares';
+import 'xin-ui/ui-drawer';
 
 export class MyApp extends App {
   get template () {

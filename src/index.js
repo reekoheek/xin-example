@@ -36,4 +36,19 @@ import { bootstrap } from '@xinix/xin/core';
       document.body.removeAttribute('unresolved');
     }, 100);
   });
+
+  window.addEventListener('beforeinstallprompt', function (e) {
+    // beforeinstallprompt Event fired
+
+    // e.userChoice will return a Promise.
+    // For more details read: https://developers.google.com/web/fundamentals/getting-started/primers/promises
+    e.userChoice.then(function (choiceResult) {
+      console.info(choiceResult.outcome);
+      if (choiceResult.outcome === 'dismissed') {
+        console.info('User cancelled home screen install');
+      } else {
+        console.info('User added to home screen');
+      }
+    });
+  });
 })();
