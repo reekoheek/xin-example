@@ -3,8 +3,8 @@ import { View } from '@xinix/xin/views';
 
 import html from './my-login.html';
 
-import 'xin-ui/ui-reveal';
-import 'xin-ui/ui-textfield';
+import('xin-ui/ui-reveal');
+import('xin-ui/ui-textfield');
 
 export class MyLogin extends View {
   static get is () {

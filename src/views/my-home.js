@@ -4,7 +4,7 @@ import { View } from '@xinix/xin/views';
 import html from './my-home.html';
 import './my-home.scss';
 
-System.import('xin-ui/ui-slides');
+import('xin-ui/ui-slides');
 
 export class MyHome extends View {
   get props () {

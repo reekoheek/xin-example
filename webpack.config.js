@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const WebpackMonitor = require('webpack-monitor');
 
 module.exports = function (env = {}) {
   return {
@@ -43,13 +45,36 @@ module.exports = function (env = {}) {
         filename: 'index.html',
         template: 'index.html',
       }),
-      new CopyWebpackPlugin([
-        { from: 'assets', to: 'assets' },
-      ]),
+      // new WebpackPwaManifest({
+      //   name: 'Xin Example',
+      //   short_name: 'Xin Example',
+      //   description: 'My Xin Example!',
+      //   background_color: '#3f51b5',
+      //   icons: [
+      //     {
+      //       src: path.resolve('src/assets/icon.png'),
+      //       sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+      //     },
+      //     {
+      //       src: path.resolve('src/assets/large-icon.png'),
+      //       size: '1024x1024', // you can also use the specifications pattern
+      //     },
+      //   ],
+      // }),
+      // new CopyWebpackPlugin([
+      //   { from: 'assets', to: 'assets' },
+      // ]),
+      // new WebpackMonitor({
+      //   capture: true, // -> default 'true'
+      //   // target: '../monitor/myStatsStore.json', // default -> '../monitor/stats.json'
+      //   launch: true, // -> default 'false'
+      //   port: 3030, // default -> 8081
+      // }),
     ],
     devServer: {
       compress: true,
       contentBase: path.join(__dirname, 'www'),
+      host: '0.0.0.0',
     },
   };
 };

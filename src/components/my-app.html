@@ -2,6 +2,17 @@
 <xin-title-middleware></xin-title-middleware>
 
 <ui-drawer id="drawer">
+  <a href="#!/profile">
+    <div class="mini-profile">
+      <div class="mini-profile__image">
+        <img src="../assets/images/profile/200x200jordan.png">
+      </div>
+      <div class="mini-profile__info">
+        <h3>Michael Jordan</h3>
+        <p>Member</p>
+      </div>
+    </div>
+  </a>
   <div class="ui-list" id="menuList">
     <a class="ui-list__item" href="#!/">Home</a>
     <a class="ui-list__item" href="#!/forms">Forms</a>
@@ -15,8 +26,10 @@
 <xin-pager class="ui-layout ui-layout--v">
   <my-walkthrough lazy-view uri="/walkthrough"></my-walkthrough>
   <my-login lazy-view uri="/login"></my-login>
+  <my-register lazy-view uri="/register"></my-register>
   <my-home lazy-view uri="/"></my-home>
   <my-menu lazy-view uri="/forms" title="Forms" menus="[[formMenus]]"></my-menu>
   <my-menu lazy-view uri="/layouts" title="Layouts" menus="[[layoutMenus]]"></my-menu>
   <my-layouts lazy-view uri="/layouts"></my-layouts>
+  <my-profile lazy-view uri="/profile"></my-profile>
 </xin-pager>

@@ -18,6 +18,10 @@ my-walkthrough {
       justify-content: center;
       height: 100%;
       color: #fff;
+
+      * {
+        box-sizing: border-box;
+      }
     }
 
 

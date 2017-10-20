@@ -4,9 +4,6 @@ import { View } from '@xinix/xin/views';
 import html from './my-menu.html';
 import './my-menu.scss';
 
-import 'xin-ui/ui-reveal';
-import 'xin-ui/ui-textfield';
-
 export class MyMenu extends View {
   static get is () {
     return 'my-menu';

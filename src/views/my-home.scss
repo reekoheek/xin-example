@@ -27,11 +27,6 @@ my-home {
 
   }
 
-  .scroll-x {
-    overflow-x: auto;
-    white-space:nowrap;
-  }
-
   .col30 {
     width: 30%;
     display: inline-block;
@@ -66,5 +61,10 @@ my-home {
     img {
       width: 100%;
     }
+  }
+
+  button {
+    border: none;
+    background-color: transparent;
   }
 }
