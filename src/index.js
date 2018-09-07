@@ -1,3 +1,5 @@
+import '@xinix/xin/scss/xin.scss';
+import '@xinix/xin/scss/xin-components.scss';
 import 'xin-ui/scss/ui-layout.scss';
 import 'xin-ui/scss/ui-scroll.scss';
 import 'xin-ui/scss/ui-card.scss';
@@ -9,6 +11,15 @@ import 'xin-ui/scss/ui-button.scss';
 import 'material-design-icons/iconfont/material-icons.css';
 
 import { bootstrap } from '@xinix/xin/core';
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', async () => {
+    console.info('Registering service worker ...');
+    let reg = await navigator.serviceWorker.register('./service-worker.js');
+    await reg.ready;
+    // await reg.update();
+  });
+}
 
 (async function () {
   // use below polyfill to support unsupported customElements v0

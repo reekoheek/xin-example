@@ -2,10 +2,15 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
-const WebpackMonitor = require('webpack-monitor');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const { GenerateSW } = require('workbox-webpack-plugin');
+// const { InjectManifest } = require('workbox-webpack-plugin');
 
-module.exports = function (env = {}) {
+module.exports = function (env, { mode = 'development' }) {
   return {
+    mode,
     context: path.resolve(__dirname, './src'),
     entry: {
       index: './index.js',
@@ -19,31 +24,55 @@ module.exports = function (env = {}) {
       rules: [
         {
           test: /\.s?css$/,
-          use: getCssLoader(env),
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: '../',
+              },
+            },
+            'css-loader',
+            'sass-loader',
+          ],
         },
         {
           test: /\.html$/,
-          use: getHtmlLoader(env),
+          use: [
+            {
+              loader: 'html-loader',
+              options: { minimize: mode === 'production' },
+            },
+          ],
         },
         {
-          test: /\.(png|jpe?g|gif)(\?.*)?$/i,
-          use: getUrlLoader('./images/[name].[ext]'),
+          test: /\.(svg|png|jpe?g|gif)(\?.*)?$/i,
+          use: {
+            loader: 'url-loader',
+            options: {
+              limit: 50,
+              name: 'images/[name].[ext]',
+            },
+          },
         },
         {
-          test: /\.(woff2?|eot|ttf)(\?.*)?$/i,
-          use: getUrlLoader('./fonts/[name].[ext]'),
-        },
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: getBabelLoader(env),
+          test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+          use: {
+            loader: 'url-loader',
+            options: {
+              limit: 50,
+              name: 'fonts/[name].[ext]',
+            },
+          },
         },
       ],
     },
     plugins: [
-      new HtmlWebpackPlugin({
-        filename: 'index.html',
-        template: 'index.html',
+      new HtmlWebpackPlugin({ template: 'index.html' }),
+      new CopyWebpackPlugin([
+        { from: 'assets', to: 'assets' },
+      ]),
+      new MiniCssExtractPlugin({
+        filename: `css/[name]${mode === 'production' ? '.min' : ''}.css`,
       }),
       new WebpackPwaManifest({
         name: 'Xin Example',
@@ -62,64 +91,31 @@ module.exports = function (env = {}) {
           },
         ],
       }),
-      new CopyWebpackPlugin([
-        { from: 'assets', to: 'assets' },
-      ]),
-      // new WebpackMonitor({
-      //   capture: true, // -> default 'true'
-      //   // target: '../monitor/myStatsStore.json', // default -> '../monitor/stats.json'
-      //   launch: true, // -> default 'false'
-      //   port: 3030, // default -> 8081
-      // }),
+      new GenerateSW({
+        importWorkboxFrom: 'local',
+        skipWaiting: true,
+        clientsClaim: true,
+        globPatterns: [
+          'fonts/**/*.{eot,svg,ttf,woff,woff2}',
+        ],
+      }),
     ],
+    optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: true, // set to true if you want JS source maps
+        }),
+        new OptimizeCSSAssetsPlugin({}),
+      ],
+    },
     devServer: {
-      compress: true,
+      disableHostCheck: true,
       contentBase: path.join(__dirname, 'www'),
+      // https: true,
+      // port: 8443,
       host: '0.0.0.0',
-      hot: false,
     },
   };
 };
-
-function getUrlLoader (name = '[name].[ext]') {
-  return {
-    loader: 'url-loader',
-    options: {
-      limit: 1000,
-      name: name,
-    },
-  };
-}
-
-function getHtmlLoader () {
-  return 'html-loader';
-}
-
-function getCssLoader () {
-  return [ 'style-loader', 'css-loader', 'sass-loader' ];
-}
-
-function getBabelLoader () {
-  let plugins = [
-    'syntax-dynamic-import',
-    // require.resolve('babel-plugin-transform-async-to-generator'),
-    // [ require.resolve('babel-plugin-__coverage__'), { 'ignore': 'node_modules' } ],
-    // require.resolve('babel-plugin-syntax-dynamic-import'),
-    // require.resolve('babel-plugin-istanbul')
-  ];
-
-  let presets = [
-    // require.resolve('babel-preset-es2015'),
-    // require.resolve('babel-preset-stage-3'),
-  ];
-
-  return {
-    loader: 'babel-loader',
-    options: {
-      babelrc: false,
-      plugins,
-      presets,
-      cacheDirectory: true,
-    },
-  };
-}

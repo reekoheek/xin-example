@@ -35,5 +35,14 @@ export class MyApp extends App {
       },
     });
   }
+
+  async updateCache (timeout = 1000) {
+    let reg = await navigator.serviceWorker.getRegistration();
+    await reg.update();
+
+    this.async(() => {
+      window.location.reload();
+    }, timeout);
+  }
 }
 define('my-app', MyApp);
